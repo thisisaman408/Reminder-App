@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reminder App</title>
+    <style>
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div class="container">
+      <h1>Reminder App</h1>
+      <input type="text" id="reminderInput" placeholder="Enter your reminder" />
+      <input type="date" id="reminderDate" value="" />
+      <div>
+        <button id="decreaseHour">-</button>
+        <input type="time" id="reminderTime" />
+        <button id="increaseHour">+</button>
+        <button id="decreaseMinute">-</button>
+        <button id="increaseMinute">+</button>
+      </div>
+      <button id="setReminderBtn">Set Reminder</button>
+      <ul id="reminderList"></ul>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

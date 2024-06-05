@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reminder Alert</title>
+    <style>
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .reminder-text {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .snooze-btn {
+        background-color: #007bff;
+        color: #fff;
+      }
+      .close-btn {
+        background-color: #dc3545;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="reminder-text" id="reminderText"></div>
+      <button class="snooze-btn" id="snoozeBtn">Snooze</button>
+      <button class="close-btn" id="closeBtn">Close</button>
+    </div>
+    <script>
+      const { ipcRenderer } = require("electron");
+
+      document.getElementById("snoozeBtn").addEventListener("click", () => {
+        ipcRenderer.send("snoozeReminder");
+        ipcRenderer.send("stopRingtone");
+      });
+
+      document.getElementById("closeBtn").addEventListener("click", () => {
+        ipcRenderer.send("closeReminder");
+        ipcRenderer.send("stopRingtone");
+      });
+
+      ipcRenderer.on("setReminderText", (event, reminderText) => {
+        document.getElementById("reminderText").innerText = reminderText;
+      });
+    </script>
+  </body>
+</html>
